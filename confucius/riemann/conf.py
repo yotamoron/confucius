@@ -5,7 +5,9 @@ CONF_PREFIX = """
 ; -*- mode: clojure; -*-
 ; vim: filetype=clojure
 
-(logging/init :file "/var/log/riemann/riemann.log")
+(def email (mailer {:from "ops@outbrain.com"}))
+
+;(logging/init :file "/var/log/riemann/riemann.log")
 
 ; Listen on the local interface over TCP (5555), UDP (5555), and websockets
 ; (5556)
@@ -30,11 +32,16 @@ CONF_SUFFIX = """
 ))
 """
 
+class DummyChild:
+    def render(self, indent):
+        return ""
+
 class BaseElement(object):
     def __init__(self, grp, t, raw):
         self.group = grp
         self.type = t
         self.id = raw['id']
+        self.child = DummyChild()
 
     def set_child(self, child):
         self.child = child

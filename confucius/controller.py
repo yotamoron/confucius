@@ -2,15 +2,24 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import Response
-
 from confucius import app
-
 import os
-
 from confucius.riemann import conf
+import psutil
+import signal
+
+RIEMANN_BASE = os.environ['RIEMANN_BASE']
 
 JSON = os.path.expanduser('~/.riemann.json')
 CONFIG = os.path.expanduser('~/.riemann.config')
+
+def reconf(config):
+    file(RIEMANN_BASE + '/etc/riemann.config', 'w').write(config)
+    for l in psutil.get_process_list():
+        if 'riemann' in ' '.join(l.cmdline):
+            l.send_signal(signal.SIGHUP)
+            return
+
 
 @app.route("/submitData", methods=['POST'])
 def submitData():
@@ -18,6 +27,7 @@ def submitData():
     config = conf.render_conf(json_model)
     file(JSON, 'w').write(json_model)
     file(CONFIG, 'w').write(config)
+    reconf(config)
     return Response("", status=200 )
 
 @app.route("/getJsonModel", methods=['GET'])
