@@ -1,0 +1,68 @@
+<!doctype html>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+	<link rel="stylesheet" href="http://jsplumbtoolkit.com//demo-all.css">
+	<link rel="stylesheet" href="http://jsplumbtoolkit.com/home/demo.css">
+</head>
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js'></script>
+<script type='text/javascript' src='http://jsplumbtoolkit.com/lib/jquery.ui.touch-punch.min.js'></script>
+<script type='text/javascript' src='http://jsplumbtoolkit.com/js/jquery.jsPlumb-1.5.2-min.js'></script>
+
+
+<script>
+	jsPlumb.bind("ready", function() {        
+	// your jsPlumb related init code goes here
+		jsPlumb.importDefaults({
+			DragOptions : { cursor: "pointer", zIndex:2000 },
+			HoverClass:"connector-hover"
+		});
+
+		var connectorStrokeColor = "rgba(50, 50, 200, 1)",
+				connectorHighlightStrokeColor = "rgba(180, 180, 200, 1)",
+				hoverPaintStyle = { strokeStyle:"#7ec3d9" };
+
+			var connection1 = jsPlumb.connect({
+				source:"window1", 
+			   	target:"window2", 			   	
+				connector:["Bezier", { curviness:70 }],
+			   	cssClass:"c1",
+			   	endpoint:"Blank",
+			   	endpointClass:"c1Endpoint",													   
+			   	anchors:["BottomCenter", [ 0.75, 0, 0, -1 ]], 
+			   	paintStyle:{ 
+					lineWidth:6,
+					strokeStyle:"#a7b04b",
+					outlineWidth:1,
+					outlineColor:"#666"
+				},
+				endpointStyle:{ fillStyle:"#a7b04b" },
+			   	hoverPaintStyle:hoverPaintStyle,			   
+			});    
+
+	jsPlumb.draggable($(".window"));
+
+	});
+
+	$(document).ready(function() {
+		$("#btnAddSource").click(function(){
+			alert("Add Source");
+		});
+	});
+
+</script>
+	<body>
+		<br>
+		<button type="button" id="btnAddSource">Add Stream Source</button>
+		<button type="button" id="btnAddElement">Add element</button>
+
+        <div id="main">
+			<div id="render"></div>	
+            <div class="component window" id="window1"><strong>VotesOnlineDB</strong></div>
+            <div class="component window" id="window2"><strong>Yotam's Email</strong></div>
+        </div>
+    </body>
+</html>

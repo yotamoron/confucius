@@ -1,0 +1,37 @@
+{
+	"elements" : [
+		{
+			"id" : "1",
+			"title" : "When",
+			"x" : 123,
+			"y" : 123,
+			"fields" : {
+				"when_param" : "service",
+				"when_value" : "OBFlightManager"
+			}
+		},
+
+		{
+			"id" : "2",
+			"title" : "email",
+			"x" : 123,
+			"y" : 123,
+			"fields" : {
+				"email_to" : "someone@outbrain.com"
+			}
+		}		
+	],
+
+	"connections" : [
+		{
+			"connectionId" : 1,
+			"connectionSource" : "1",
+			"connectionTarget" : "2"
+		} ,
+		{
+			"connectionId" : 2,
+			"connectionSource" : "2",
+			"connectionTarget" : "1"
+		}		
+	]
+}
