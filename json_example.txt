@@ -10,24 +10,45 @@
 			"fields" : {
 				"service" : "OBFlightManager"
 			}
-
 		},
 		{
 			"group" : "transformer",
 			"type" : "where",
-			"id" : "1",
+			"id" : "where_1",
 			"title" : "Where",
 			"x" : 123,
 			"y" : 123,
 			"fields" : {
-				"where_param" : "metric  > 10"
+				"where_param" : "> metric 10"
+            }
+		},
+		{
+			"group" : "transformer",
+			"type" : "rollup",
+			"id" : "rollup_1",
+			"title" : "Some rollup",
+			"x" : 123,
+			"y" : 123,
+			"fields" : {
+				"n_events" : 10,
+                "n_seconds" : 10
 			}
 		},
-
+		{
+			"group" : "transformer",
+			"type" : "rate",
+			"id" : "rate_1",
+			"title" : "rate",
+			"x" : 123,
+			"y" : 123,
+			"fields" : {
+                "interval" : 10
+			}
+		},		
 		{
 			"group" : "transformer",
 			"type" : "email",
-			"id" : "2",
+			"id" : "email_1",
 			"title" : "email",
 			"x" : 123,
 			"y" : 123,
@@ -39,9 +60,24 @@
 
 	"connections" : [
 		{
-			"connectionId" : 1,
-			"connectionSource" : "1",
-			"connectionTarget" : "2"
-		} 	
+			"id" : 1,
+			"source" : "source1",
+			"target" : "where_1"
+		},
+        {
+			"id" : 2,
+			"source" : "where_1",
+			"target" : "rollup_1"
+        },
+        {
+			"id" : 3,
+			"source" : "rollup_1",
+			"target" : "rate_1"
+        },
+        {
+			"id" : 4,
+			"source" : "rate_1",
+			"target" : "email_1"
+        }
 	]
 }
