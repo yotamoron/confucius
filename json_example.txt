@@ -1,6 +1,7 @@
 {
 	"elements" : [
 		{
+			"group" : "source",
 			"type" : "source",
 			"id" : "source1",
 			"title" : "OBFlightManager Service",
@@ -12,7 +13,8 @@
 
 		},
 		{
-			"type" : "transformer",
+			"group" : "transformer",
+			"type" : "where",
 			"id" : "1",
 			"title" : "Where",
 			"x" : 123,
@@ -23,7 +25,8 @@
 		},
 
 		{
-			"type" : "transformer",
+			"group" : "transformer",
+			"type" : "email",
 			"id" : "2",
 			"title" : "email",
 			"x" : 123,
