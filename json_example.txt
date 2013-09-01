@@ -1,17 +1,29 @@
 {
 	"elements" : [
 		{
-			"id" : "1",
-			"title" : "When",
+			"type" : "source",
+			"id" : "source1",
+			"title" : "OBFlightManager Service",
 			"x" : 123,
 			"y" : 123,
 			"fields" : {
-				"when_param" : "service",
-				"when_value" : "OBFlightManager"
+				"service" : "OBFlightManager"
+			}
+
+		},
+		{
+			"type" : "transformer",
+			"id" : "1",
+			"title" : "Where",
+			"x" : 123,
+			"y" : 123,
+			"fields" : {
+				"where_param" : "metric  > 10"
 			}
 		},
 
 		{
+			"type" : "transformer",
 			"id" : "2",
 			"title" : "email",
 			"x" : 123,
@@ -27,11 +39,6 @@
 			"connectionId" : 1,
 			"connectionSource" : "1",
 			"connectionTarget" : "2"
-		} ,
-		{
-			"connectionId" : 2,
-			"connectionSource" : "2",
-			"connectionTarget" : "1"
-		}		
+		} 	
 	]
 }
