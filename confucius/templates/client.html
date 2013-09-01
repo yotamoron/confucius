@@ -13,6 +13,7 @@
 <script type='text/javascript' src='http://jsplumbtoolkit.com/js/jquery.jsPlumb-1.5.2-min.js'></script>
 
 <script type='text/javascript' src='../static/js/addSource.js'></script>
+<script type='text/javascript' src='../static/js/addElement.js'></script>
 <script type='text/javascript' src='../static/js/plumb.js'></script>
 
 <script>
@@ -23,7 +24,13 @@
 	$(document).ready(function() {
 		$("#btnAddSource").click(function(){
 			var divId = "window3";
-			addSource();
+			addSource(divId);
+			configurePlumbSource(divId);
+		});
+
+		$("#btnAddElement").click(function(){
+			var divId = "window4";
+			addElement(divId);
 			configurePlumbElement(divId);
 		});
 	});
