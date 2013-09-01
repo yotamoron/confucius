@@ -12,6 +12,7 @@
 <script type='text/javascript' src='http://jsplumbtoolkit.com/lib/jquery.ui.touch-punch.min.js'></script>
 <script type='text/javascript' src='http://jsplumbtoolkit.com/js/jquery.jsPlumb-1.5.2-min.js'></script>
 
+<script type='text/javascript' src='../static/js/addSource.js'></script>
 
 <script>
 	jsPlumb.bind("ready", function() {        
@@ -49,7 +50,13 @@
 
 	$(document).ready(function() {
 		$("#btnAddSource").click(function(){
-			alert("Add Source");
+			addSource();
+		});
+	});
+
+	$(document).ready(function() {
+		$("#btnAddSource").click(function(){
+			addSource();
 		});
 	});
 
