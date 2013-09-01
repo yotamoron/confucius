@@ -101,7 +101,14 @@ function getJsonConnections() {
 	    	type : $elem.attr('type'),
 	        id: $elem.attr('id'),
 	        title : $elem.text(),
-	        fields : {},
+	        fields : {
+	        	service:"value",
+	        	where_param:"value",
+	        	n_events:1,
+	        	n_seconds:1,
+	        	interval:1,
+	        	email_to:"e"
+	        },
 	        x: parseInt($elem.css("left"), 10),
 	        y: parseInt($elem.css("top"), 10)
 	    });

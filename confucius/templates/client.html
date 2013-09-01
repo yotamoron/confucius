@@ -15,6 +15,7 @@
 <script type='text/javascript' src='../static/js/addSource.js'></script>
 <script type='text/javascript' src='../static/js/addElement.js'></script>
 <script type='text/javascript' src='../static/js/plumb.js'></script>
+<script type='text/javascript' src='../static/js/client.js'></script>
 
 <script>
 	jsPlumb.bind("ready", function() {        
@@ -26,14 +27,14 @@
 		
 			var counterId = Math.floor((Math.random()*100000000)+1);
 			var divId = "window" + counterId;			
-			addSource(divId);
+			addSource(divId, "Source");
 			configurePlumbSource(divId);
 		});
 		
 		$("#btnAddElement").click(function(){
 			var counterId = Math.floor((Math.random()*100000000)+1);
 			var divId = "window" + counterId;
-			addElement(divId, $("#transformerType").val());
+			addElement(divId, $("#transformerType").val(),  $("#transformerType").val());
 			configurePlumbElement(divId);
 		});
 	});
@@ -49,11 +50,10 @@
 		  <option value="rate">Rate</option>
 		  <option value="email">Email</option>
 		</select>
-
+		<button type="button" id="btnSave">Save changes</button>
         <div id="main">
 			<div id="render"></div>	
-            <div class="component window" id="window1"><strong>VotesOnlineDB</strong></div>
-            <div class="component window" id="window2"><strong>Yotam's Email</strong></div>
+
         </div>
     </body>
 </html>
