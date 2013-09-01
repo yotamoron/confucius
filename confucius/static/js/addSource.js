@@ -1,7 +1,7 @@
-function addSource() {
+function addSource(divId) {
 	alert("Add Source");
 	jQuery('<div/>', {
-		id: 'window3',
+		id: divId,
 		class: 'component window',
 		text: 'This test'
 	}).appendTo('#main');
