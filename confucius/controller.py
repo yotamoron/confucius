@@ -7,4 +7,4 @@ from confucius import app
 
 @app.route("/submitData", methods=['POST'])
 def submitData():
-    return Response("%s %s" % (myconfig.prefix, request.form['data']), status=200 )
+    return Response("%s" % request.form['data'], status=200 )
