@@ -82,3 +82,9 @@ function configurePlumbElement(id) {
 	jsPlumb.addEndpoint(id, targetEndpoint, {anchor:"LeftMiddle"});
 	jsPlumb.draggable($("#" + id));
 }
+
+
+function configurePlumbSource(id) {
+	jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
+	jsPlumb.draggable($("#" + id));
+}
