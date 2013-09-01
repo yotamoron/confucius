@@ -59,7 +59,8 @@ function configurePlumba() {
 	divsWithWindowClass = $(".window");
 
 	for (var i = 0 ; i < divsWithWindowClass.length; i++) {
-		configurePlumbElement(divsWithWindowClass[i]);
+		var id = jsPlumb.getId(divsWithWindowClass[i])
+		configurePlumbElement(id);
 	}		  
 
 	// bind click listener; delete connections on click			
@@ -74,12 +75,10 @@ function configurePlumba() {
 	});
 }
 
-function configurePlumbElement(element) {
+function configurePlumbElement(id) {
 	// add endpoints to all of these - one for source, and one for target, configured so they don't sit
 	// on top of each other.
-	var id = jsPlumb.getId(element);
 	jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
 	jsPlumb.addEndpoint(id, targetEndpoint, {anchor:"LeftMiddle"});
-	jsPlumb.draggable(element);
-	return id;
+	jsPlumb.draggable($("#" + id));
 }
