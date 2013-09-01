@@ -22,7 +22,9 @@
 
 	$(document).ready(function() {
 		$("#btnAddSource").click(function(){
+			var divId = "window3";
 			addSource();
+			configurePlumbElement(divId);
 		});
 	});
 
@@ -36,7 +38,6 @@
 			<div id="render"></div>	
             <div class="component window" id="window1"><strong>VotesOnlineDB</strong></div>
             <div class="component window" id="window2"><strong>Yotam's Email</strong></div>
-            <div class="component window" id="window3"><strong>Test</strong></div>
         </div>
     </body>
 </html>

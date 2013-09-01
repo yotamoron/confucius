@@ -78,6 +78,7 @@ function configurePlumba() {
 function configurePlumbElement(id) {
 	// add endpoints to all of these - one for source, and one for target, configured so they don't sit
 	// on top of each other.
+	console.log(id);
 	jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
 	jsPlumb.addEndpoint(id, targetEndpoint, {anchor:"LeftMiddle"});
 	jsPlumb.draggable($("#" + id));
