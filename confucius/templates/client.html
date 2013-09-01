@@ -13,6 +13,7 @@
 <script type='text/javascript' src='http://jsplumbtoolkit.com/js/jquery.jsPlumb-1.5.2-min.js'></script>
 
 <script type='text/javascript' src='../static/js/addSource.js'></script>
+<script type='text/javascript' src='../static/js/addElement.js'></script>
 <script type='text/javascript' src='../static/js/plumb.js'></script>
 
 <script>
@@ -35,6 +36,12 @@
 		<br>
 		<button type="button" id="btnAddSource">Add Stream Source</button>
 		<button type="button" id="btnAddElement">Add element</button>
+		<select id="transformerType">
+		  <option value="where">Where?</option>
+		  <option value="rollup">Rollup</option>
+		  <option value="rate">Rate</option>
+		  <option value="email">Email</option>
+		</select>
 
         <div id="main">
 			<div id="render"></div>	

@@ -1,9 +1,10 @@
 function addSource(divId) {
-	alert("Add Source");
 	jQuery('<div/>', {
 		id: divId,
 		class: 'component window',
-		text: 'This test'
+		text: 'This test',
+		group : 'source',
+		type : 'source'
 	}).appendTo('#main');
 	
 }
