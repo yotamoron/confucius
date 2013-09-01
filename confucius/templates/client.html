@@ -20,6 +20,7 @@
 <script type='text/javascript' src='../static/js/plumb.js'></script>
 <script type='text/javascript' src='../static/js/client.js'></script>
 
+<script type='text/javascript' src='../static/js/dialogs.js'></script>
 <script>
 	jsPlumb.bind("ready", function() {        
 		configurePlumba();
@@ -43,14 +44,23 @@
         $.contextMenu({
             selector: '.component', 
             callback: function(key, options) {
-                <!-- Roy, here is where you can call the delete function you carved -->
-                console.log($(this), key); 
+                var myId = $(this).attr('id')
+                var jObj = $('#' + myId)
+                if (key == "edit") {
+                    /* XXX: we should have a per-type callback here for editing */
+                    $('#title').val(jObj.text());
+                    $('#element-id').val(myId);
+                    $('#service-form').dialog('open');
+                } else {
+                    deleteEndPoint(jObj);
+                }
             },
             items: {
                 "edit": {name: "Edit", icon: "edit"},
                 "delete": {name: "Delete", icon: "delete"},
             }
         });
+        prepareSourcePopupForm();
 	});
 
 </script>
@@ -69,6 +79,16 @@
 			<div id="render"></div>	
 
         </div>
-        
+        <div id="service-form" title="Edit Source Parameters">
+         
+          <form>
+              <fieldset>
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
+                <input type="hidden" name="element-id" id="element-id" value="" />
+              </fieldset>
+          </form>
+        </div>
     </body>
+        
 </html>
