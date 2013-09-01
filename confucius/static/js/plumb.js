@@ -46,7 +46,9 @@ var targetEndpoint = {
 };	
 var hoverStyle = {strokeStyle:"#449999"};
 
-
+var LEFT_ANCHOR = 0
+var RIGHT_ANCHOR = 1
+var BOTH_ANCHORS = 2
 
 // Main configuration of jsPlumb is done here
 function configurePlumba() {
@@ -60,7 +62,7 @@ function configurePlumba() {
 
 	for (var i = 0 ; i < divsWithWindowClass.length; i++) {
 		var id = jsPlumb.getId(divsWithWindowClass[i])
-		configurePlumbElement(id);
+		configurePlumbElement(id, BOTH_ANCHORS);
 	}		  
 
 	// bind click listener; delete connections on click			
@@ -75,28 +77,29 @@ function configurePlumba() {
 	});
 }
 
-function configurePlumbElement(id) {
-	// add endpoints to all of these - one for source, and one for target, configured so they don't sit
-	// on top of each other.
-	var sourceEP = jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
-	var targetEP = jsPlumb.addEndpoint(id, targetEndpoint, {anchor:"LeftMiddle"});
+function configurePlumbElement(id, anchors) {
+    var ret = [];
+    if (anchors == BOTH_ANCHORS || anchors == RIGHT_ANCHOR) {
+    	var sourceEP = jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
+        ret.push(sourceEP)
+    }
+    if (anchors == BOTH_ANCHORS || anchors == LEFT_ANCHOR) {
+	    var targetEP = jsPlumb.addEndpoint(id, targetEndpoint, {anchor:"LeftMiddle"});
+        ret.push(targetEP);
+    }
 	jsPlumb.draggable($("#" + id));
-	return [sourceEP, targetEP];
+	return ret;
 }
-
 
 function configurePlumbSource(id) {
-	var sourceEP = jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
-	jsPlumb.draggable($("#" + id));
-	return [sourceEP];
+    return configurePlumbElement(id, RIGHT_ANCHOR);
 }
-
 
 function getJsonConnections() {
 	var elemObjects = []
 	$("#main .component").each(function (idx, elem) {
 	    var $elem = $(elem);
-	    elemObjects.push({
+        var nextElem = {
 	    	group : $elem.attr('group'),
 	    	type : $elem.attr('type'),
 	        id: $elem.attr('id'),
@@ -111,7 +114,8 @@ function getJsonConnections() {
 	        },
 	        x: parseInt($elem.css("left"), 10),
 	        y: parseInt($elem.css("top"), 10)
-	    });
+	    }
+	    elemObjects.push(nextElem);
 	});
 
 	var connObjects = [];
@@ -148,7 +152,7 @@ function loadConnectionsFromJson(jsonData) {
 		} else {
 			addElement(divId, elementType, element.title);
 			setPosition(divId, element.x, element.y);
-			createdElementMap[divId] = configurePlumbElement(divId);
+			createdElementMap[divId] = configurePlumbElement(divId, BOTH_ANCHORS);
 		}
 	}
 

@@ -21,7 +21,6 @@ function loadModelFromServer() {
 
 function saveModelToServer() {
 	var jsonData = getJsonConnections();
-	console.log(jsonData);
 	$.ajax({
 		url:"/submitData",
 		method:"POST",
