@@ -58,7 +58,6 @@ function load_model(jsonData) {
 		}
 	}
 
-	console.log(createdElementMap);
 	for (var j = 0 ; j < connections.length; j++) {
 		var connection = connections[j];
 
