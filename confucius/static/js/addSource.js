@@ -1,8 +1,8 @@
-function addSource(divId) {
+function addSource(divId, theTitle) {
 	jQuery('<div/>', {
 		id: divId,
 		class: 'component window',
-		text: 'This test',
+		text: theTitle,
 		group : 'source',
 		type : 'source'
 	}).appendTo('#main');

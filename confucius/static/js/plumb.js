@@ -78,15 +78,17 @@ function configurePlumba() {
 function configurePlumbElement(id) {
 	// add endpoints to all of these - one for source, and one for target, configured so they don't sit
 	// on top of each other.
-	jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
-	jsPlumb.addEndpoint(id, targetEndpoint, {anchor:"LeftMiddle"});
+	var sourceEP = jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
+	var targetEP = jsPlumb.addEndpoint(id, targetEndpoint, {anchor:"LeftMiddle"});
 	jsPlumb.draggable($("#" + id));
+	return [sourceEP, targetEP];
 }
 
 
 function configurePlumbSource(id) {
-	jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
+	var sourceEP = jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
 	jsPlumb.draggable($("#" + id));
+	return [sourceEP];
 }
 
 
@@ -98,7 +100,7 @@ function getJsonConnections() {
 	    	group : $elem.attr('group'),
 	    	type : $elem.attr('type'),
 	        id: $elem.attr('id'),
-	        title : $elem.attr('text'),
+	        title : $elem.text(),
 	        fields : {},
 	        x: parseInt($elem.css("left"), 10),
 	        y: parseInt($elem.css("top"), 10)
@@ -118,4 +120,44 @@ function getJsonConnections() {
 		elements : elemObjects,
 		connections : connObjects
 	});
+}
+
+
+function loadConnectionsFromJson(jsonData) {
+	var data = JSON.parse(jsonData);
+	var elements = data.elements;
+	var connections = data.connections;
+
+	var createdElementMap = {};
+
+	for (var i = 0 ; i < elements.length; i++) {
+		var element = elements[i];
+		var divId = element.id;
+		var elementType = element.type;
+		if (element.group == 'source') {
+			addSource(divId, element.title);
+			setPosition(divId, element.x, element.y);
+			createdElementMap[divId] = configurePlumbSource(divId);
+		} else {
+			addElement(divId, elementType, element.title);
+			setPosition(divId, element.x, element.y);
+			createdElementMap[divId] = configurePlumbElement(divId);
+		}
+	}
+
+	console.log(createdElementMap);
+	for (var j = 0 ; j < connections.length; j++) {
+		var connection = connections[j];
+
+		var sourceEndpoint = createdElementMap[connection.source][0];
+		var targetEndpoint = createdElementMap[connection.target][1];
+		jsPlumb.connect({source:sourceEndpoint, target:targetEndpoint});
+	}
+
+}
+
+function setPosition(divId, x, y) {
+	var myDiv = $("#" + divId);
+	myDiv.css("top", y);
+	myDiv.css("left", x);
 }
