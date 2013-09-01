@@ -13,14 +13,14 @@ function loadModelFromServer() {
 			if (result == '') {
 				return;
 			}
-			loadConnectionsFromJson(result);
+			load_model(result);
 		},
 	});
 }
 
 
 function saveModelToServer() {
-	var jsonData = getJsonConnections();
+	var jsonData = dump_model();
 	$.ajax({
 		url:"/submitData",
 		method:"POST",
