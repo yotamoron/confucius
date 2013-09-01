@@ -88,3 +88,34 @@ function configurePlumbSource(id) {
 	jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
 	jsPlumb.draggable($("#" + id));
 }
+
+
+function getJsonConnections() {
+	var elemObjects = []
+	$("#main .component").each(function (idx, elem) {
+	    var $elem = $(elem);
+	    elemObjects.push({
+	    	group : $elem.attr('group'),
+	    	type : $elem.attr('type'),
+	        id: $elem.attr('id'),
+	        title : $elem.attr('text'),
+	        fields : {},
+	        x: parseInt($elem.css("left"), 10),
+	        y: parseInt($elem.css("top"), 10)
+	    });
+	});
+
+	var connObjects = [];
+	$.each(jsPlumb.getConnections(), function (idx, connection) {
+	    connObjects.push({
+	        id: connection.id,
+	        source: connection.sourceId,
+	        target: connection.targetId
+	    });
+	});
+
+	return JSON.stringify({
+		elements : elemObjects,
+		connections : connObjects
+	});
+}
