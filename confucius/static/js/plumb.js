@@ -96,3 +96,10 @@ function setPosition(divId, x, y) {
 	myDiv.css("top", y);
 	myDiv.css("left", x);
 }
+
+function deleteEndPoint(id) {
+	jsPlumb.detachAllConnections(id);
+	jsPlumb.removeAllEndpoints(id);
+	jsPlumb.setDraggable(id, false);
+	$("#" + id).remove();
+}

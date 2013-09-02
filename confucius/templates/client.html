@@ -52,7 +52,7 @@
                     $('#element-id').val(myId);
                     $('#service-form').dialog('open');
                 } else {
-                    deleteEndPoint(jObj);
+                    deleteEndPoint(myId);
                 }
             },
             items: {
@@ -74,7 +74,7 @@
 		  <option value="rate">Rate</option>
 		  <option value="email">Email</option>
 		</select>
-		<button type="button" id="btnSave">Save changes</button>
+		<div align="right"><button type="button" id="btnSave">Save changes</button><div>
         <div id="main">
 			<div id="render"></div>	
 
