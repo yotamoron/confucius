@@ -14,6 +14,10 @@ function loadModelValue(id, key) {
 	return model[id][key];
 }
 
-function loadValuesToElements() {
-	
+function loadModel(id) {
+	return model[id];
+}
+
+function saveModel(id, fields) {
+	model[id] = fields;
 }
