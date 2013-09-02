@@ -24,6 +24,7 @@ CONF_PREFIX = """
 
   ; Inbound events will be passed to these streams:
   (streams
+    prn
 
 
 """
