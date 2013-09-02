@@ -11,6 +11,7 @@ import os
 app = Flask(__name__)
 
 import confucius.defaultWiring;
+import confucius.services;
 import confucius.controller;
 
 

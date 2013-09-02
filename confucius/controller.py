@@ -5,6 +5,7 @@ from flask import Response
 from confucius import app
 import os
 from confucius.riemann import conf
+from confucius import services;
 import psutil
 import signal
 
@@ -34,3 +35,7 @@ def submitData():
 def getModel():
     json_model = file(JSON, 'r').read()
     return Response(json_model, status=200)
+
+@app.route("/getServiceNames")
+def getServiceNames():
+    return Response("%s" % services.getOBServices(), status=200)
