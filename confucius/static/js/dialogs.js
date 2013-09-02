@@ -5,8 +5,8 @@ function prepareSourcePopupForm() {
  
     $("#service-form" ).dialog({
       autoOpen: false,
-      height: 150,
-      width: 300,
+      height: 300,
+      width: 370,
       modal: true,
       buttons: {
         "Update component": function() {
