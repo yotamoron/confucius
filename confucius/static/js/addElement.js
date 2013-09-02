@@ -1,9 +1,9 @@
-function addElement(divId, theTitle, elementType) {
+function addElement(divId, theTitle, elementType, groupName) {
 	jQuery('<div/>', {
 		id: divId,
 		class: 'component window',
 		text: theTitle,
-		group : 'transformer',
+		group : groupName,
 		type : elementType
 	}).appendTo('#main');
 	

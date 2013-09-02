@@ -33,19 +33,14 @@
 	});
 
 	$(document).ready(function() {
-		$("#btnAddSource").click(function(){
-		
-			var counterId = Math.floor((Math.random()*100000000)+1);
-			var divId = "window" + counterId;			
-			addSource(divId, "Source");
-			type = $("#" + divId).attr('type');
-			configurePlumbElement(divId, getUIType(type));
-		});
 		
 		$("#btnAddElement").click(function(){
 			var counterId = Math.floor((Math.random()*100000000)+1);
 			var divId = "window" + counterId;
-			addElement(divId, $("#transformerType").val(),  $("#transformerType").val());
+			var title = $("#transformerType").val();
+			var type = $("#transformerType").val();
+			var group =  getGroupName(type);
+			addElement(divId, title, type, group);
 			type = $("#" + divId).attr('type');
 			configurePlumbElement(divId, getUIType(type));
         });
@@ -77,9 +72,9 @@
 </script>
 	<body>
 		<br>
-		<button type="button" id="btnAddSource">Add Stream Source</button>
 		<button type="button" id="btnAddElement">Add element</button>
 		<select id="transformerType">
+		  <option value="source">Source</option>
 		  <option value="where">Where?</option>
 		  <option value="rollup">Rollup</option>
 		  <option value="rate">Rate</option>
