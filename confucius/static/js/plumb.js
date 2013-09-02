@@ -11,11 +11,11 @@ var exampleDropOptions = {
 var connector = [ "Bezier", { cssClass:"connectorClass", hoverClass:"connectorHoverClass" } ];
 var connectorStyle = {
 	gradient:{stops:[[0.5, sourceColor], [1, exampleColor]]},
-	lineWidth:5,
+	lineWidth:10,
 	strokeStyle:sourceColor
 };
 
-var endpoint = ["Dot", { cssClass:"endpointClass", radius:10, hoverClass:"endpointHoverClass" } ];
+var endpoint = ["Dot", { cssClass:"endpointClass", radius:20, hoverClass:"endpointHoverClass" } ];
 var endpointStyle = { fillStyle:exampleColor };
 var sourceEndpoint = {
 	endpoint:endpoint,

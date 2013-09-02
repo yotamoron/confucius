@@ -4,7 +4,8 @@ function addElement(divId, theTitle, elementType, groupName) {
 		class: 'component window',
 		text: theTitle,
 		group : groupName,
-		type : elementType
+		type : elementType,
+		style : "font-size:20px;",
 	}).appendTo('#main');
 	
 }
