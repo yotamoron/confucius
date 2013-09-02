@@ -20,6 +20,7 @@
 <script type='text/javascript' src='../static/js/plumb.js'></script>
 <script type='text/javascript' src='../static/js/client.js'></script>
 <script type='text/javascript' src='../static/js/fields.js'></script>
+<script type='text/javascript' src='../static/js/fields_model.js'></script>
 <script type='text/javascript' src='../static/js/dialogs.js'></script>
 
 
@@ -50,8 +51,11 @@
                 var jObj = $('#' + myId)
                 if (key == "edit") {
                     /* XXX: we should have a per-type callback here for editing */
-                    $('#title').val(jObj.text());
+                    var formCode = createForm(jObj.attr('type'));
+                    $('#service-form').html(formCode);
                     $('#element-id').val(myId);
+                    $('#title').val(jObj.text());
+                    fillDynamicValues(myId);
                     $('#service-form').dialog('open');
                 } else {
                     deleteEndPoint(myId);
@@ -82,14 +86,6 @@
 
         </div>
         <div id="service-form" title="Edit Source Parameters">
-         
-          <form>
-              <fieldset>
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
-                <input type="hidden" name="element-id" id="element-id" value="" />
-              </fieldset>
-          </form>
         </div>
     </body>
         
