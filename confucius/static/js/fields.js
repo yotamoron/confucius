@@ -20,7 +20,25 @@ function getFieldsToDisplay(type) {
 	return fields_def[type];
 }
 
+function getSelectService(name) {
+    var html = '<select align="right" class="dynamic_field text ui-widget-content ui-corner-all" type="text" id="' + name + '">';
+    $.ajax({
+        url: '/getServiceNames',
+        success: function(result) {
+            services = eval(result);
+            for (var i = 0; i < services.length; i++) {
+                service = services[i];
+                html += '<option value="' + service + '">' + service + '</option>';
+            }
+        },
+        async: false
+    });
+    html += '</select>'
+    return html
+}
+
 function createForm(type) {
+    console.log(type);
 	fieldsToDisplay = getFieldsToDisplay(type);
 	var html = '<form id="generic_form">';
 	html += '<label for="title">Title</label>';
@@ -29,7 +47,11 @@ function createForm(type) {
 	for (var i = 0; i < fieldsToDisplay.length; i++) {
 
 		html += '<label>' + fieldsToDisplay[i].name + '</label> ';
-		html += '<input align="right" class="dynamic_field text ui-widget-content ui-corner-all" type="text" id="' + fieldsToDisplay[i].name + '"><br>';
+        if (type == 'source') {
+            html += getSelectService(fieldsToDisplay[i].name)
+        } else {
+    		html += '<input align="right" class="dynamic_field text ui-widget-content ui-corner-all" type="text" id="' + fieldsToDisplay[i].name + '"><br>';
+        }
 
 	}
 	html += '</form>';
