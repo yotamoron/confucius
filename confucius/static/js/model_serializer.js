@@ -41,15 +41,11 @@ function load_model(jsonData) {
 		var element = elements[i];
 		var divId = element.id;
 		var elementType = element.type;
-		if (element.group === 'source') {
-			addSource(divId, element.title);
-			setPosition(divId, element.x, element.y);
-			createdElementMap[divId] = configurePlumbSource(divId);
-		} else {
-			addElement(divId, elementType, element.title);
-			setPosition(divId, element.x, element.y);
-			createdElementMap[divId] = configurePlumbElement(divId, BOTH_ANCHORS);
-		}
+
+		addElement(divId, element.title, elementType, element.group);
+		setPosition(divId, element.x, element.y);
+		createdElementMap[divId] = configurePlumbElement(divId, getUIType(elementType));
+	
 		saveModel(divId, element.fields);
 	}
 

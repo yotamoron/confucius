@@ -72,14 +72,17 @@ function configurePlumba() {
 
 function configurePlumbElement(id, anchors) {
     var ret = [];
+    var sourceEP = null;
     if (anchors == BOTH_ANCHORS || anchors == RIGHT_ANCHOR) {
-    	var sourceEP = jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
-        ret.push(sourceEP)
+    	sourceEP = jsPlumb.addEndpoint(id, sourceEndpoint, {anchor:"RightMiddle"});
     }
+    ret.push(sourceEP);
+
+    var targetEP = null;
     if (anchors == BOTH_ANCHORS || anchors == LEFT_ANCHOR) {
-	    var targetEP = jsPlumb.addEndpoint(id, targetEndpoint, {anchor:"LeftMiddle"});
-        ret.push(targetEP);
+	    targetEP = jsPlumb.addEndpoint(id, targetEndpoint, {anchor:"LeftMiddle"});
     }
+    ret.push(targetEP);
 	jsPlumb.draggable($("#" + id));
 	return ret;
 }
