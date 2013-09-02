@@ -20,8 +20,10 @@ def main():
     parser = OptionParser()
     set_options(parser)
     (options, args) = parser.parse_args()
+    e = vars(options)
+    print e
     riemann = bernhard.Client()
-    riemann.send(vars(options))
+    riemann.send(e)
     print riemann.query('true')
 
 if __name__ == "__main__":
