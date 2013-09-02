@@ -1,10 +1,8 @@
 
-var exampleColor = '#00f';
-var connectorStrokeColor = "rgba(50, 50, 200, 1)";
-var connectorHighlightStrokeColor = "rgba(180, 180, 200, 1)";
-var hoverPaintStyle = { strokeStyle:"#7ec3d9" };
+var exampleColor = 'rgb(231, 120, 8)';
+var sourceColor = 'rgb(0,0,255)';
 
-var overlays = [ ["PlainArrow", { fillStyle:"#09098e", width:25, length:25 } ] ];
+var overlays = [ ["PlainArrow", {  width:25, length:25 } ] ];
 var exampleDropOptions = {
 		tolerance:'touch',
 		hoverClass:'dropHover',
@@ -12,20 +10,20 @@ var exampleDropOptions = {
 };
 var connector = [ "Bezier", { cssClass:"connectorClass", hoverClass:"connectorHoverClass" } ];
 var connectorStyle = {
-	gradient:{stops:[[0, exampleColor], [0.5, '#09098e'], [1, exampleColor]]},
+	gradient:{stops:[[0.5, sourceColor], [1, exampleColor]]},
 	lineWidth:5,
-	strokeStyle:exampleColor
+	strokeStyle:sourceColor
 };
 
 var endpoint = ["Dot", { cssClass:"endpointClass", radius:10, hoverClass:"endpointHoverClass" } ];
 var endpointStyle = { fillStyle:exampleColor };
 var sourceEndpoint = {
 	endpoint:endpoint,
-	paintStyle:endpointStyle,
+	paintStyle:{ fillStyle:sourceColor },
 	hoverPaintStyle:{ fillStyle:"#449999" },
 	isSource:true, 
 	isTarget:false, 
-	maxConnections:-1, 
+	maxConnections:1, 
 	connector:connector,
 	connectorStyle:connectorStyle,
 	connectorHoverStyle:hoverStyle,
@@ -34,7 +32,7 @@ var sourceEndpoint = {
 
 var targetEndpoint = {
 	endpoint:endpoint,
-	paintStyle:endpointStyle,
+	paintStyle:{ fillStyle:exampleColor },
 	hoverPaintStyle:{ fillStyle:"#449999" },
 	isSource:false, 
 	isTarget:true, 
