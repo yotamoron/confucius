@@ -46,9 +46,6 @@ var targetEndpoint = {
 };	
 var hoverStyle = {strokeStyle:"#449999"};
 
-var LEFT_ANCHOR = 0
-var RIGHT_ANCHOR = 1
-var BOTH_ANCHORS = 2
 
 function configurePlumba() {
 

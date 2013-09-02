@@ -16,6 +16,7 @@
 <script type='text/javascript' src='http://jsplumbtoolkit.com/js/jquery.jsPlumb-1.5.2-min.js'></script>
 
 <script type='text/javascript' src='../static/js/jquery.contextMenu.js'></script>
+<script type='text/javascript' src='../static/js/element_defintions.js'></script>
 <script type='text/javascript' src='../static/js/model_serializer.js'></script>
 <script type='text/javascript' src='../static/js/addSource.js'></script>
 <script type='text/javascript' src='../static/js/addElement.js'></script>
@@ -37,14 +38,16 @@
 			var counterId = Math.floor((Math.random()*100000000)+1);
 			var divId = "window" + counterId;			
 			addSource(divId, "Source");
-			configurePlumbSource(divId);
+			type = $("#" + divId).attr('type');
+			configurePlumbElement(divId, getUIType(type));
 		});
 		
 		$("#btnAddElement").click(function(){
 			var counterId = Math.floor((Math.random()*100000000)+1);
 			var divId = "window" + counterId;
 			addElement(divId, $("#transformerType").val(),  $("#transformerType").val());
-			configurePlumbElement(divId, BOTH_ANCHORS);
+			type = $("#" + divId).attr('type');
+			configurePlumbElement(divId, getUIType(type));
         });
         $.contextMenu({
             selector: '.component', 
